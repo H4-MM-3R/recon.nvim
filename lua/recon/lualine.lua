@@ -13,6 +13,8 @@ M.sections = {
                 end
             end
         },
+    },
+    lualine_c = {
         {
             "cwd",
             fmt = function()
