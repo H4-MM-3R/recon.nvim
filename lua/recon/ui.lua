@@ -79,7 +79,7 @@ function M.toggle_quick_menu()
 	vim.api.nvim_win_set_option(Recon_win_id, "number", true)
 	vim.api.nvim_buf_set_name(Recon_bufh, "Recon-menu")
 	vim.api.nvim_buf_set_lines(Recon_bufh, 0, #contents, false, contents)
-	vim.api.nvim_buf_set_option(Recon_bufh, "filetype", "Recon")
+	vim.api.nvim_buf_set_option(Recon_bufh, "filetype", "recon")
 	vim.api.nvim_buf_set_option(Recon_bufh, "buftype", "acwrite")
 	vim.api.nvim_buf_set_option(Recon_bufh, "bufhidden", "delete")
 	vim.api.nvim_buf_set_keymap(
