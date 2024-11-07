@@ -2,14 +2,14 @@
 
 ### Navigation
 - [x] Basic Navigation UI
-- [x] Harpoon Type Navigation
-- [ ] Vimium / Snipe.nvim Type Navigation
+- [ ] Vimium Type Navigation
 
 ### Commands
 - [ ] Basic Commands UI
 - [ ] Send and Execute Commands in Terminal
-- [ ] Smart Send Keys to a Pane
+- [ ] Smart Send Keys to a Terminal Pane
 
 ### Extensions
+- [x] Lualine Extension support
 - [ ] Adding files from Telescope File Browser as Recon marks
 - [ ] Adding files from Oil.nvim as Recon marks
