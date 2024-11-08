@@ -20,23 +20,29 @@ local function close_menu(force_save)
 end
 
 local function create_window()
+    vim.api.nvim_set_hl(0, 'ReconWindow', { fg = '#adb8b8', bg = 'none' })  -- window background
+    vim.api.nvim_set_hl(0, 'ReconBorder', { fg = '#073642' })  -- border color
+    vim.api.nvim_set_hl(0, 'ReconTitle', { fg = '#adb8b8', bold = true })  -- title color
+
 	local config = recon.get_menu_config()
 	local width = config.width or 60
 	local height = config.height or 10
-	local borderchars = config.borderchars or { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+	local borderchars = config.borderchars or { "━", "┃", "━", "┃", "┏", "┓", "┛", "┗" }
 	local bufnr = vim.api.nvim_create_buf(false, false)
 
 	local Recon_win_id, win = popup.create(bufnr, {
-		title = "Recon",
+		title = "Recon  ",
 		highlight = "ReconWindow",
 		line = math.floor(((vim.o.lines - height) / 2) - 1),
 		col = math.floor((vim.o.columns - width) / 2),
 		minwidth = width,
 		minheight = height,
 		borderchars = borderchars,
+        borderhighlight = "ReconBorder",
+        titlehighlight = "ReconTitle",
 	})
 
-	vim.api.nvim_win_set_option(win.border.win_id, "winhl", "Normal:ReconBorder")
+	-- vim.api.nvim_win_set_option(win.border.win_id, "winhl", "Normal:ReconBorder")
 
 	return {
 		bufnr = bufnr,

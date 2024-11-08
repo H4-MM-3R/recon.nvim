@@ -170,7 +170,7 @@ function M.setup(config)
 			["tmux_autoclose_windows"] = false,
 			["excluded_filetypes"] = { "recon" },
 			["mark_branch"] = false,
-			["tabline"] = false,
+			["tabline"] = true,
 			["tabline_suffix"] = "   ",
 			["tabline_prefix"] = "   ",
 		},
@@ -178,9 +178,9 @@ function M.setup(config)
 
 	ensure_correct_config(complete_config)
 
-	if complete_config.tabline then
-		require("recon.tabline").setup(complete_config)
-	end
+    if complete_config.global_settings.tabline then
+        require("recon.tabline").setup(complete_config)
+    end
 
 	ReconConfig = complete_config
 end

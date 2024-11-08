@@ -69,7 +69,7 @@ local function emit_changed()
 	end
 
 	if global_settings.tabline then
-		vim.cmd("redrawt")
+		vim.cmd.redrawt()
 	end
 
 	if not callbacks["changed"] then
