@@ -107,6 +107,10 @@ function M.add_file(file_name_or_buf_id)
 	filter_filetype()
 	local buf_name = get_buf_name(file_name_or_buf_id)
 
+    if M.valid_index(M.get_index_of(buf_name)) then
+        return
+    end
+
 	validate_buf_name(buf_name)
 
 	local found_idx = get_first_empty_slot()
@@ -218,7 +222,12 @@ function M.store_offset()
 end
 
 function M.valid_index(idx, marks)
-	return idx ~= nil and idx <= M.get_length(marks) and idx >= 1
+    if idx == nil then
+        return false
+    end
+
+    local file_name = M.get_marked_file_name(idx, marks)
+    return file_name ~= nil and file_name ~= ""
 end
 
 return M
