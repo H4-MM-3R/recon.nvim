@@ -55,6 +55,9 @@ to navigate to a mark
 ```
 
 ### Commands
+
+![Recon Commands](assets/commandsRecording.gif)
+
 to view all the commands of current buffer
 ```lua
 :lua require("recon.cmd-ui").toggle_quick_menu()
@@ -87,5 +90,3 @@ to a Recon Marks Menu of current buffer
 > so, other pickers like live_grep, grep_string, etc. are not supported.
 
 Inspired by harpoon by ThePrimeagen.
->>>>>>> 0d8fa0a (Update README.md)
->>>>>>> b1e5e50 (Update README.md)
