@@ -111,6 +111,10 @@ function M.save()
 	Path:new(cache_config):write(vim.fn.json_encode(ReconConfig), "w")
 end
 
+function M.get_term_config()
+	return ensure_correct_config(ReconConfig).projects[utils.project_key()].term
+end
+
 function M.get_mark_config()
 	return ensure_correct_config(ReconConfig).projects[utils.project_key()].mark
 end

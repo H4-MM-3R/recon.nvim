@@ -5,9 +5,9 @@
 - [ ] Vimium Type Navigation
 
 ### Commands
-- [ ] Basic Commands UI
-- [ ] Send and Execute Commands in Terminal
-- [ ] Smart Send Keys to a Terminal Pane
+- [x] Basic Commands UI
+- [x] Send and Execute Commands in Terminal
+- [x] Smart Send Keys to a Terminal Pane
 
 ### Extensions
 - [x] Lualine Extension support

@@ -50,10 +50,10 @@ function M.setup(opts)
 
             if is_current then
                 tabline = tabline ..
-                    '%#ReconActivePrefix#' .. (opts.tabline_prefix or ' %#ReconNumberActive#') .. i .. ' %*%#ReconNumberActiveAnti# %*%#ReconActive#'
+                    '%#ReconPrefix#' .. (opts.tabline_prefix or ' %#ReconNumberActive#') .. i .. ' %*%#ReconNumberActiveAnti# %*%#ReconActive#'
             else
                 tabline = tabline ..
-                    '%#ReconInactivePrefix#' .. (opts.tabline_prefix or ' %#ReconNumberInactive#') .. i .. ' %*%#ReconNumberInactiveAnti# %*%#ReconInactive#'
+                    '%#ReconPrefix#' .. (opts.tabline_prefix or ' %#ReconNumberInactive#') .. i .. ' %*%#ReconNumberInactiveAnti# %*%#ReconInactive#'
             end
 
             tabline = tabline .. label .. (opts.tabline_suffix or '  ') .. '%*'
@@ -77,7 +77,7 @@ function M.setup(opts)
             local color = get_color('ReconActive', 'bg#')
 
             if (color == "" or color == nil) then
-                vim.api.nvim_set_hl(0, "ReconActivePrefix", { link = "TablineSel" })
+                vim.api.nvim_set_hl(0, "ReconPrefix", {})
                 vim.api.nvim_set_hl(0, "ReconActive", { link = "TablineSel" })
                 vim.api.nvim_set_hl(0, "ReconNumberActive", { link = "TablineSel" })
                 vim.api.nvim_set_hl(0, "ReconNumberActiveAnti", { link = "TablineSel" })
@@ -87,7 +87,10 @@ function M.setup(opts)
                 vim.api.nvim_set_hl(0, "ReconNumberInactiveAnti", { link = "Tabline" })
                 vim.api.nvim_set_hl(0, "ReconTabline", { link = "Tabline" })
                 vim.api.nvim_set_hl(0, "ReconTablineAnti", { link = "Tabline" })
+                vim.api.nvim_set_hl(0, "ReconIconAnti", { link = "Tabline" })
+                vim.api.nvim_set_hl(0, "ReconIcon", { link = "Tabline" })
             end
+
         end,
     })
 end

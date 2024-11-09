@@ -31,7 +31,7 @@ local function create_window()
 	local bufnr = vim.api.nvim_create_buf(false, false)
 
 	local Recon_win_id, win = popup.create(bufnr, {
-		title = "Recon  ",
+		title = "Recon Marks  ",
 		highlight = "ReconWindow",
 		line = math.floor(((vim.o.lines - height) / 2) - 1),
 		col = math.floor((vim.o.columns - width) / 2),
@@ -41,8 +41,6 @@ local function create_window()
         borderhighlight = "ReconBorder",
         titlehighlight = "ReconTitle",
 	})
-
-	-- vim.api.nvim_win_set_option(win.border.win_id, "winhl", "Normal:ReconBorder")
 
 	return {
 		bufnr = bufnr,
@@ -162,6 +160,9 @@ function M.nav_file(id)
 	local idx = Marked.get_index_of(id)
 
 	local mark = Marked.get_marked_file(idx)
+    if mark == nil then
+        return
+    end
 	local filename = vim.fs.normalize(mark.filename)
 	local buf_id = get_or_create_buffer(filename)
 	local set_row = not vim.api.nvim_buf_is_loaded(buf_id)
