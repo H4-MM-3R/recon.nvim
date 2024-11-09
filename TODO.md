@@ -2,7 +2,7 @@
 
 ### Navigation
 - [x] Basic Navigation UI
-- [ ] Vimium Type Navigation
+// - [] Vimium Type Navigation is achieved by mapping nav_file() to home row keys
 
 ### Commands
 - [x] Basic Commands UI
@@ -13,4 +13,5 @@
 - [x] Lualine Extension support
 - [x] Tabline with oh-my-tmux look
 - [x] Adding files from Telescope File Browser as Recon marks
-- [ ] Adding files from Oil.nvim as Recon marks
+// Issue number: #436 (Bug: Error when quickly previewing files with semantic tokens LSP capabilities.) 
+// - [] Oil.nvim is not working for immediate switching of preview window buffer
