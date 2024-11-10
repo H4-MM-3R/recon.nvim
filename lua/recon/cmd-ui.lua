@@ -8,32 +8,32 @@ Recon_cmd_win_id = nil
 Recon_cmd_bufh = nil
 
 local function create_window()
-    vim.api.nvim_set_hl(0, 'ReconWindow', { fg = '#adb8b8', bg = 'none' })  -- window background
-    vim.api.nvim_set_hl(0, 'ReconBorder', { fg = '#073642' })  -- border color
-    vim.api.nvim_set_hl(0, 'ReconTitle', { fg = '#adb8b8', bold = true })  -- title color
+	vim.api.nvim_set_hl(0, "ReconWindow", { fg = "#adb8b8", bg = "none" }) -- window background
+	vim.api.nvim_set_hl(0, "ReconBorder", { fg = "#073642" }) -- border color
+	vim.api.nvim_set_hl(0, "ReconTitle", { fg = "#adb8b8", bold = true }) -- title color
 
-    local config = recon.get_menu_config()
-    local width = config.width or 60
-    local height = config.height or 10
+	local config = recon.get_menu_config()
+	local width = config.width or 60
+	local height = config.height or 10
 	local borderchars = config.borderchars or { "━", "┃", "━", "┃", "┏", "┓", "┛", "┗" }
-    local bufnr = vim.api.nvim_create_buf(false, false)
+	local bufnr = vim.api.nvim_create_buf(false, false)
 
-    local Recon_cmd_win_id, win = popup.create(bufnr, {
+	local Recon_cmd_win_id, _ = popup.create(bufnr, {
 		title = "Recon Commands  ",
-        highlight = "ReconWindow",
-        line = math.floor(((vim.o.lines - height) / 2) - 1),
-        col = math.floor((vim.o.columns - width) / 2),
-        minwidth = width,
-        minheight = height,
-        borderchars = borderchars,
-        borderhighlight = "ReconBorder",
-        titlehighlight = "ReconTitle",
-    })
+		highlight = "ReconWindow",
+		line = math.floor(((vim.o.lines - height) / 2) - 1),
+		col = math.floor((vim.o.columns - width) / 2),
+		minwidth = width,
+		minheight = height,
+		borderchars = borderchars,
+		borderhighlight = "ReconBorder",
+		titlehighlight = "ReconTitle",
+	})
 
-    return {
-        bufnr = bufnr,
-        win_id = Recon_cmd_win_id,
-    }
+	return {
+		bufnr = bufnr,
+		win_id = Recon_cmd_win_id,
+	}
 end
 
 local function close_menu()
@@ -42,7 +42,6 @@ local function close_menu()
 	Recon_cmd_win_id = nil
 	Recon_cmd_bufh = nil
 end
-
 
 function M.toggle_quick_menu()
 	if Recon_cmd_win_id ~= nil and vim.api.nvim_win_is_valid(Recon_cmd_win_id) then
@@ -81,9 +80,7 @@ function M.toggle_quick_menu()
 		"<Cmd>lua require('recon.cmd-ui').toggle_quick_menu()<CR>",
 		{ silent = true }
 	)
-	vim.cmd(
-		string.format("autocmd BufWriteCmd <buffer=%s> lua require('recon.cmd-ui').on_menu_save()", Recon_cmd_bufh)
-	)
+	vim.cmd(string.format("autocmd BufWriteCmd <buffer=%s> lua require('recon.cmd-ui').on_menu_save()", Recon_cmd_bufh))
 	if global_config.save_on_change then
 		vim.cmd(
 			string.format(
@@ -96,36 +93,36 @@ function M.toggle_quick_menu()
 end
 
 function M.emit_changed()
-    if recon.get_global_settings().save_on_change then
-        recon.save()
-    end
+	if recon.get_global_settings().save_on_change then
+		recon.save()
+	end
 end
 
 function M.set_cmd_list(new_list)
-    for k in pairs(recon.get_term_config().cmds) do
-        recon.get_term_config().cmds[k] = nil
-    end
-    for k, v in pairs(new_list) do
-        recon.get_term_config().cmds[k] = v
-    end
-    M.emit_changed()
+	for k in pairs(recon.get_term_config().cmds) do
+		recon.get_term_config().cmds[k] = nil
+	end
+	for k, v in pairs(new_list) do
+		recon.get_term_config().cmds[k] = v
+	end
+	M.emit_changed()
 end
 
 local function get_menu_items()
-    local lines = vim.api.nvim_buf_get_lines(Recon_cmd_bufh, 0, -1, true)
-    local indices = {}
+	local lines = vim.api.nvim_buf_get_lines(Recon_cmd_bufh, 0, -1, true)
+	local indices = {}
 
-    for _, line in pairs(lines) do
-        if not utils.is_white_space(line) then
-            table.insert(indices, line)
-        end
-    end
+	for _, line in pairs(lines) do
+		if not utils.is_white_space(line) then
+			table.insert(indices, line)
+		end
+	end
 
-    return indices
+	return indices
 end
 
 function M.on_menu_save()
-    M.set_cmd_list(get_menu_items())
+	M.set_cmd_list(get_menu_items())
 end
 
 return M

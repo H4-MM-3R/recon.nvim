@@ -76,7 +76,7 @@ local function emit_changed()
 		return
 	end
 
-	for  cb in pairs(callbacks["changed"]) do
+	for cb in pairs(callbacks["changed"]) do
 		cb()
 	end
 end
@@ -107,9 +107,9 @@ function M.add_file(file_name_or_buf_id)
 	filter_filetype()
 	local buf_name = get_buf_name(file_name_or_buf_id)
 
-    if M.valid_index(M.get_index_of(buf_name)) then
-        return
-    end
+	if M.valid_index(M.get_index_of(buf_name)) then
+		return
+	end
 
 	validate_buf_name(buf_name)
 
@@ -138,13 +138,13 @@ function M.set_mark_list(new_list)
 end
 
 local function maxn(t)
-    local max_index = 0
-    for k, _ in pairs(t) do
-        if type(k) == "number" and k > max_index then
-            max_index = k
-        end
-    end
-    return max_index
+	local max_index = 0
+	for k, _ in pairs(t) do
+		if type(k) == "number" and k > max_index then
+			max_index = k
+		end
+	end
+	return max_index
 end
 
 function M.get_length(marks)
@@ -207,27 +207,27 @@ function M.get_current_index()
 end
 
 function M.store_offset()
-    local marks = recon.get_mark_config().marks
-    local buf_name = get_buf_name()
-    local idx = M.get_index_of(buf_name, marks)
-    if not M.valid_index(idx, marks) then
-        return
-    end
+	local marks = recon.get_mark_config().marks
+	local buf_name = get_buf_name()
+	local idx = M.get_index_of(buf_name, marks)
+	if not M.valid_index(idx, marks) then
+		return
+	end
 
-    local cursor_pos = vim.api.nvim_win_get_cursor(0)
-    marks[idx].row = cursor_pos[1]
-    marks[idx].col = cursor_pos[2]
+	local cursor_pos = vim.api.nvim_win_get_cursor(0)
+	marks[idx].row = cursor_pos[1]
+	marks[idx].col = cursor_pos[2]
 
 	emit_changed()
 end
 
 function M.valid_index(idx, marks)
-    if idx == nil then
-        return false
-    end
+	if idx == nil then
+		return false
+	end
 
-    local file_name = M.get_marked_file_name(idx, marks)
-    return file_name ~= nil and file_name ~= ""
+	local file_name = M.get_marked_file_name(idx, marks)
+	return file_name ~= nil and file_name ~= ""
 end
 
 return M

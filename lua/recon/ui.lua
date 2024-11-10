@@ -20,9 +20,9 @@ local function close_menu(force_save)
 end
 
 local function create_window()
-    vim.api.nvim_set_hl(0, 'ReconWindow', { fg = '#adb8b8', bg = 'none' })  -- window background
-    vim.api.nvim_set_hl(0, 'ReconBorder', { fg = '#073642' })  -- border color
-    vim.api.nvim_set_hl(0, 'ReconTitle', { fg = '#adb8b8', bold = true })  -- title color
+	vim.api.nvim_set_hl(0, "ReconWindow", { fg = "#adb8b8", bg = "none" }) -- window background
+	vim.api.nvim_set_hl(0, "ReconBorder", { fg = "#073642" }) -- border color
+	vim.api.nvim_set_hl(0, "ReconTitle", { fg = "#adb8b8", bold = true }) -- title color
 
 	local config = recon.get_menu_config()
 	local width = config.width or 60
@@ -30,7 +30,7 @@ local function create_window()
 	local borderchars = config.borderchars or { "━", "┃", "━", "┃", "┏", "┓", "┛", "┗" }
 	local bufnr = vim.api.nvim_create_buf(false, false)
 
-	local Recon_win_id, win = popup.create(bufnr, {
+	local Recon_win_id, _ = popup.create(bufnr, {
 		title = "Recon Marks  ",
 		highlight = "ReconWindow",
 		line = math.floor(((vim.o.lines - height) / 2) - 1),
@@ -38,8 +38,8 @@ local function create_window()
 		minwidth = width,
 		minheight = height,
 		borderchars = borderchars,
-        borderhighlight = "ReconBorder",
-        titlehighlight = "ReconTitle",
+		borderhighlight = "ReconBorder",
+		titlehighlight = "ReconTitle",
 	})
 
 	return {
@@ -160,9 +160,9 @@ function M.nav_file(id)
 	local idx = Marked.get_index_of(id)
 
 	local mark = Marked.get_marked_file(idx)
-    if mark == nil then
-        return
-    end
+	if mark == nil then
+		return
+	end
 	local filename = vim.fs.normalize(mark.filename)
 	local buf_id = get_or_create_buffer(filename)
 	local set_row = not vim.api.nvim_buf_is_loaded(buf_id)

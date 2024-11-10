@@ -1,32 +1,31 @@
 local M = {}
 
 M.sections = {
-    lualine_a = {'filename'},
-    lualine_b = {
-        {
-            "icon",
-            fmt = function()
-                if vim.fn.expand("%:t") == "Recon Marks" then
-                   return " "
-                else
-                    return " "
-                end
-            end
-        },
-    },
-    lualine_c = {
-        {
-            "cwd",
-            fmt = function()
-                return vim.fn.getcwd()
-            end
-        }
-    }
-
+	lualine_a = { "filename" },
+	lualine_b = {
+		{
+			"icon",
+			fmt = function()
+				if vim.fn.expand("%:t") == "Recon Marks" then
+					return " "
+				else
+					return " "
+				end
+			end,
+		},
+	},
+	lualine_c = {
+		{
+			"cwd",
+			fmt = function()
+				return vim.fn.getcwd()
+			end,
+		},
+	},
 }
 
 M.filetypes = {
-    'recon'
+	"recon",
 }
 
 return M

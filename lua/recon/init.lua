@@ -182,9 +182,9 @@ function M.setup(config)
 
 	ensure_correct_config(complete_config)
 
-    if complete_config.global_settings.tabline then
-        require("recon.tabline").setup(complete_config)
-    end
+	if complete_config.global_settings.tabline then
+		require("recon.tabline").setup(complete_config)
+	end
 
 	ReconConfig = complete_config
 end
