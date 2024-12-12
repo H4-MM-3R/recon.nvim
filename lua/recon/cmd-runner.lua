@@ -40,7 +40,6 @@ function M.run_recon_cmd(cmd_idx, ...)
 	local cmd = recon.get_term_config().cmds[cmd_idx]
 
 	if pane_id == nil then
-		vim.cmd.w()
 		vim.cmd.split()
 		vim.cmd.wincmd("J")
 		vim.api.nvim_win_set_height(0, 20)
@@ -58,6 +57,9 @@ function M.run_recon_cmd(cmd_idx, ...)
 end
 
 function M.send_command(idx, cmd, ...)
+    if cmd:find("%%") then
+        cmd = cmd:gsub("%%", vim.fn.expand("%:p"))
+    end
 	local _ = utils.os_cmd_run({
 		"tmux",
 		"send-keys",

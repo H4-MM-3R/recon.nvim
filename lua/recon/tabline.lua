@@ -32,7 +32,7 @@ function M.setup(opts)
 		local tabline = ""
 
 		local index = require("recon.mark").get_index_of(vim.fn.bufname())
-		tabline = "%#ReconTabline# %#ReconTablineAnti# Recon Marks %#ReconTabline#%*%T"
+		tabline = "%#ReconTabline# %#ReconTablineAnti#   %#ReconTabline#%*%T"
 
 		for i, tab in ipairs(tabs) do
 			local is_current = i == index
